@@ -15,8 +15,8 @@ class Univ extends Model
         'univ_name',
     ];
 
-    public function univ()
+    public function mahasiswa()
     {
-        return $this->hasMany(Univ::class);
+        return $this->hasMany(Mahasiswa::class, 'univ_id', 'iduniv');
     }
 }

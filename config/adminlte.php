@@ -312,6 +312,11 @@ return [
             'text' => 'search',
         ],
         [
+            'text'        => 'Pelatihan',
+            'url'         => '/iht',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
             'text' => 'Mahasiswa Praktik Klinik',
             'icon' => 'fas fa-fw fa-users',
             'submenu' => [
@@ -323,6 +328,25 @@ return [
                 [
                     'text' => 'Data Instansi',
                     'url' => '/univs',
+                    'icon' => 'fas fa-fw fa-university',
+                ],
+                [
+                    'text' => 'Data Fakultas',
+                    'url' => '/fakuls',
+                    'icon' => 'fas fa-fw fa-university',
+                ],
+                [
+                    'text' => 'Data Jurusan',
+                    'url' => '/jurusans',
+                    'icon' => 'fas fa-fw fa-university',
+                ],
+                [
+                    'text' => 'Data Program Studi',
+                    'url' => '/prodis',
+                    'icon' => 'fas fa-fw fa-university',
+                ],[
+                    'text' => 'Data Tingkat Pendidikan',
+                    'url' => '/tingkatpendidikans',
                     'icon' => 'fas fa-fw fa-university',
                 ],
                 [
@@ -363,12 +387,15 @@ return [
             'url' => '/orientasis',
             'icon' => 'far fa-fw fa-file',
         ],
-
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url' => '/profile',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Training Need Analysis',
+            'url'         => '/tnas',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Data Pegawai',
+            'url'         => '/pegawais',
+            'icon'        => 'far fa-fw fa-user',
         ],
 
     ],

@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\Ruangan;
 use App\Models\Univ;
+use App\Models\Fakul;
+use App\Models\Jurusan;
+use App\Models\Prodi;
+use App\Models\Tingkatpendidikan;
 use Barryvdh\DomPDF\Facade\PDF;
 use Carbon\Carbon;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
@@ -22,6 +26,10 @@ class MahasiswaController extends Controller
 
         $data = DB::table('mahasiswas')
                     ->join('univs', 'univs.iduniv', '=', 'mahasiswas.univ_id')
+                    ->join('fakuls', 'fakuls.idfakul', '=', 'mahasiswas.fakul_id')
+                    ->join('jurusans', 'jurusans.idjurusan', '=', 'mahasiswas.jurusan_id')
+                    ->join('prodis', 'prodis.idprodi', '=', 'mahasiswas.prodi_id')
+                    ->join('tingkatpendidikans', 'tingkatpendidikans.idtkpendidikan', '=', 'mahasiswas.tkpendidikan_id')
                     ->join('ruangans', 'ruangans.idruangan', '=', 'mahasiswas.ruangan_id')
                     ->get();
 
@@ -48,10 +56,26 @@ class MahasiswaController extends Controller
     public function downloadmahasiswapdf(Request $request)
     {
 
-        $mahasiswas = Mahasiswa::with('univ')->whereIn('id', $request->mahasiswas)->get();
+        $mahasiswas = Mahasiswa::query()
+            ->with('univ')
+            ->whereIn('id', $request->mahasiswas)
+            ->get();
+        // $mahasiswas = Mahasiswa::query()
+        //     ->with('univ', 'ruangan')
+        //     ->get();
 
+        $mhs = Mahasiswa::query()
+            ->with('univ', 'ruangan')
+            ->whereIn('id', $request->mahasiswas)
+            ->get()
+            ->groupBy(function ($univ){
+                return $univ->univ->univ_name;
 
-        $pdf = PDF::loadview('mahasiswas.downloadmahasiswapdf', compact('mahasiswas'));
+            })
+            ->groupBy(function ($ruangan){
+                return $ruangan->ruangan->ruangan_name;
+            }); dd($mhs);
+        $pdf = PDF::loadview('mahasiswas.downloadmahasiswapdf', compact('mahasiswas', 'mhs'));
 
         return $pdf->stream('laporan-mahasiswa.pdf');
     }
@@ -64,9 +88,13 @@ class MahasiswaController extends Controller
     public function create()
     {
         $univs = Univ::all();
+        $fakuls = Fakul::all();
+        $jurusans = Jurusan::all();
+        $prodis = Prodi::all();
+        $tingkatpendidikans = Tingkatpendidikan::all();
         $ruangans = Ruangan::all();
 
-        return view('mahasiswas.create', compact('univs', 'ruangans'));
+        return view('mahasiswas.create', compact('univs', 'fakuls', 'jurusans', 'prodis', 'tingkatpendidikans', 'ruangans'));
 
     }
 
@@ -79,14 +107,14 @@ class MahasiswaController extends Controller
     {
         $request->validate([
             'univ_id' => 'required',
+            'fakul_id' => 'required',
+            'jurusan_id' => 'required',
+            'prodi_id' => 'required',
+            'tkpendidikan_id' => 'required',
             'ruangan_id' => 'required',
             'nim' => 'required',
             'nama_mahasiswa' => 'required',
             'jk' => 'required',
-            'tk_pendidikan' => 'required',
-            'fakultas' => 'required',
-            'jurusan' => 'required',
-            'prodi' => 'required',
             'semester' => 'required',
             'tgl_mulai' => 'required',
             'tgl_selesai' => 'required',
@@ -123,15 +151,15 @@ class MahasiswaController extends Controller
     public function edit(Mahasiswa $mahasiswa)
     {
         $univs = Univ::all();
+        $fakuls = Fakul::all();
+        $jurusans = Jurusan::all();
+        $prodis = Prodi::all();
+        $tingkatpendidikans = Tingkatpendidikan::all();
         $ruangans = Ruangan::all();
 
-        // $mahasiswa = DB::table('mahasiswas')
-        //             ->join('univs', 'univs.iduniv', '=', 'mahasiswas.univ_id')
-        //             ->join('ruangans', 'ruangans.idruangan', '=', 'mahasiswas.ruangan_id')
-        //             ->get();
         // dd($mahasiswa);
             //tampilkan view mahasiswa dan kirim datanya ke view tersebut
-            return view('mahasiswas.edit', compact('mahasiswa', 'univs', 'ruangans'));
+            return view('mahasiswas.edit', compact('mahasiswa', 'univs', 'fakuls', 'jurusans', 'prodis', 'tingkatpendidikans', 'ruangans'));
     }
 
     /**
@@ -144,13 +172,14 @@ class MahasiswaController extends Controller
     {
         $request->validate([
             'univ_id' => 'required',
+            'fakul_id' => 'required',
+            'jurusan_id' => 'required',
+            'prodi_id' => 'required',
+            'tkpendidikan_id' => 'required',
+            'ruangan_id' => 'required',
             'nim' => 'required',
             'nama_mahasiswa' => 'required',
             'jk' => 'required',
-            'tk_pendidikan' => 'required',
-            'fakultas' => 'required',
-            'jurusan' => 'required',
-            'prodi' => 'required',
             'semester' => 'required',
             'tgl_mulai' => 'required',
             'tgl_selesai' => 'required',

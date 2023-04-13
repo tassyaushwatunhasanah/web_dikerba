@@ -102,10 +102,10 @@
                         <td>{{ $mahasiswa->nim }}</td>
                         <td>{{ $mahasiswa->jk }}</td>
                         <td>{{ $mahasiswa->univ->univ_name }}</td>
-                        <td>{{ $mahasiswa->fakultas }}</td>
-                        <td>{{ $mahasiswa->jurusan }}</td>
-                        <td>{{ $mahasiswa->prodi }}</td>
-                        <td>{{ $mahasiswa->tk_pendidikan }}</td>
+                        <td>{{ $mahasiswa->fakul->fakul_name }}</td>
+                        <td>{{ $mahasiswa->jurusan->jurusan_name }}</td>
+                        <td>{{ $mahasiswa->prodi->prodi_name }}</td>
+                        <td>{{ $mahasiswa->tingkatpendidikan->tkpendidikan_name }}</td>
                         <td>{{ $mahasiswa->semester }}</td>
                         <td>{{ date('d M Y', strtotime($mahasiswa->tgl_mulai)) }}</td>
                         <td>{{ date('d M Y', strtotime($mahasiswa->tgl_selesai)) }}</td>

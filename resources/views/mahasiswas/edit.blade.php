@@ -70,25 +70,41 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Fakultas</strong>
-                                    <input type="text" name="fakultas" value="{{ $mahasiswa->fakultas }}" class="form-control" placeholder="Fakultas">
+                                    <select type="text" name="fakul_id" class="form-control" placeholder="Fakultas">
+                                        @foreach ($fakuls as $fakul)
+                                        <option value="{{ $fakul->idfakul }}" @selected($mahasiswa->fakul_id==$fakul->idfakul)>{{ $fakul->fakul_name }}</option>
+                                        @endforeach
+                                </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Jurusan</strong>
-                                    <input type="text" name="jurusan" value="{{ $mahasiswa->jurusan }}" class="form-control" placeholder="Jurusan">
+                                    <select type="text" name="jurusan_id" class="form-control" placeholder="Jurusan">
+                                        @foreach ($jurusans as $jurusan)
+                                        <option value="{{ $jurusan->idjurusan }}" @selected($mahasiswa->jurusan_id==$jurusan->idjurusan)>{{ $jurusan->jurusan_name }}</option>
+                                        @endforeach
+                                </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Program Studi</strong>
-                                    <input type="text" name="prodi" value="{{ $mahasiswa->prodi }}" class="form-control" placeholder="prodi">
+                                    <select type="text" name="prodi_id" class="form-control" placeholder="Program Studi">
+                                        @foreach ($prodis as $prodi)
+                                        <option value="{{ $prodi->idprodi }}" @selected($mahasiswa->prodi_id==$prodi->idprodi)>{{ $prodi->prodi_name }}</option>
+                                        @endforeach
+                                </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <strong>Tingkat Pendidikan</strong>
-                                    <input type="text" name="tk_pendidikan" value="{{ $mahasiswa->tk_pendidikan }}" class="form-control" placeholder="Tingkat Pendidikan">
+                                    <select type="text" name="tkpendidikan_id" class="form-control" placeholder="Tingkat Pendidikan">
+                                        @foreach ($tingkatpendidikans as $tingkatpendidikan)
+                                        <option value="{{ $tingkatpendidikan->idtkpendidikan }}" @selected($mahasiswa->tkpendidikan_id==$tingkatpendidikan->idtkpendidikan)>{{ $tingkatpendidikan->tkpendidikan_name }}</option>
+                                        @endforeach
+                                </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">

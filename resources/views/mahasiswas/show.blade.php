@@ -40,25 +40,25 @@
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="list-group-item">
                                 <strong>Fakultas:</strong>
-                                {{ $mahasiswa->fakultas }}
+                                {{ $mahasiswa->fakul->fakul_name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="list-group-item">
                                 <strong>Jurusan:</strong>
-                                {{ $mahasiswa->jurusan }}
+                                {{ $mahasiswa->jurusan->jurusan_name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="list-group-item">
                                 <strong>Program Studi:</strong>
-                                {{ $mahasiswa->prodi }}
+                                {{ $mahasiswa->prodi->prodi_name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="list-group-item">
                                 <strong>Tingkat Pendidikan:</strong>
-                                {{ $mahasiswa->tk_pendidikan }}
+                                {{ $mahasiswa->tingkatpendidikan->tkpendidikan_name }}
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">

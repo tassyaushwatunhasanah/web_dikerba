@@ -62,30 +62,58 @@
         <table border="1" cellpadding="5" cellspacing="1" class="table">
             <thead>
                 <tr>
-                    <th rowspan="2">Instansi</th>
-                    <th rowspan="2">Tanggal Mulai</th>
-                    <th rowspan="2">Tanggal Selesai</th>
-                    <th rowspan="2">Jumlah</th>
-                    <th colspan="2">Jenis Kelamin</th>
-                    @foreach ($mahasiswas as $mahasiswa)
-                    <th rowspan="2">{{ $mahasiswa->ruangan->ruangan_name }}</th>
-                    @endforeach
-                </tr>
-                <tr>
-                    <th>Laki-laki</th>
-                    <th>Perempuan</th>
+                    <th>Instansi</th>
+                    <th>Fakultas</th>
+                    <th>Jurusan</th>
+                    <th>Program Studi</th>
+                    <th>Tingkat pendidikan</th>
+                    <th>Tanggal Mulai</th>
+                    <th>Tanggal Selesai</th>
+                    <th>Jumlah</th>
+                    <th>Ruangan</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($mahasiswas as $mahasiswa)
+                @foreach ($mhs as $key => $mh)
                 <tr>
-                    <td>{{ $mahasiswa->univ->univ_name }}</td>
-                    <td>{{ $mahasiswa->tgl_mulai }}</td>
-                    <td>{{ $mahasiswa->tgl_selesai }}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $key }}</td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->fakul->fakul_name }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->jurusan->jurusan_name }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->prodi->prodi_name }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->tingkatpendidikan->tkpendidikan_name }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->tgl_mulai }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->tgl_selesai }}</span><br/>
+                        @endforeach
+                    </td>
+                    <td>{{ $mh->count() }}</td>
+                    <td>
+                        @foreach ($mh as $m)
+                            <span>{{ $m->ruangan->ruangan_name }}</span><br/>
+                        @endforeach
+                    </td>
+
                 </tr>
                 @endforeach
             </tbody>

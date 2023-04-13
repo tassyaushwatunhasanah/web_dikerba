@@ -16,14 +16,14 @@ return new class extends Migration
         Schema::create('mahasiswas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('univ_id');
+            $table->unsignedBigInteger('fakul_id');
+            $table->unsignedBigInteger('jurusan_id');
+            $table->unsignedBigInteger('prodi_id');
+            $table->unsignedBigInteger('tkpendidikan_id');
             $table->unsignedBigInteger('ruangan_id');
             $table->string('nim');
             $table->string('nama_mahasiswa');
             $table->string('jk');
-            $table->string('tk_pendidikan');
-            $table->string('fakultas');
-            $table->string('jurusan');
-            $table->string('prodi');
             $table->string('semester');
             $table->date('tgl_mulai');
             $table->date('tgl_selesai');
@@ -32,6 +32,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('univ_id')->references('iduniv')->on('univs');
+            $table->foreign('fakul_id')->references('idfakul')->on('fakuls');
+            $table->foreign('jurusan_id')->references('idjurusan')->on('jurusans');
+            $table->foreign('prodi_id')->references('idprodi')->on('prodis');
+            $table->foreign('tkpendidikan_id')->references('idtkpendidikan')->on('tingkatpendidikans');
             $table->foreign('ruangan_id')->references('idruangan')->on('ruangans');
         });
     }
