@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List User')
+@section('title', 'Daftar Orientasi Pegawai | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Orientasi</h1>
+    <h1 class="m-0 text-dark">Daftar Orientasi Pegawai</h1>
 @stop
 
 @section('content')
@@ -18,8 +18,8 @@
                     <a class="btn btn-danger" href="{{ route('cetakorientasi') }}" target="_blank">PDF</a>
                     <a class="btn btn-success" href="{{ route('orientasis.create') }}"> Excel</a>
                     <br>
-                <br>
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                    <br>
+                    <table class="table table-hover table-bordered table-stripped table-responsive" id="example2">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -28,8 +28,8 @@
                             <th>Tgl Selesai</th>
                             <th>Pendidikan</th>
                             @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
                             @endif
                             <th width="280px">Action</th>
                         </tr>
@@ -43,10 +43,10 @@
                                 <td>{{ date('d M Y', strtotime($orientasi->tgl_selesaiorientasi)) }}</td>
                                 <td>{{ $orientasi->pendidikan }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $orientasi->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime ($orientasi->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $orientasi->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime ($orientasi->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 <a class="btn btn-info btn-xs" href="{{ route('orientasis.show',$orientasi->id) }}">Show</a>
@@ -59,12 +59,11 @@
                         @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
     </div>
-    @stack('scripts')
+@stack('scripts')
 @stop
 
 @push('js')

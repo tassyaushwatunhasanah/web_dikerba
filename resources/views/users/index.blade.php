@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List User')
+@section('title', 'Data Akun User | Wesite Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List User</h1>
+    <h1 class="m-0 text-dark">Data Akun User</h1>
 @stop
 
 @section('content')
@@ -23,6 +23,10 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Role</th>
+                            @if(auth()->user()->role=='admin')
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
+                            @endif
                             <th>Opsi</th>
                         </tr>
                         </thead>
@@ -33,6 +37,10 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->role}}</td>
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime($user->created_at)) }}</td>
+                                <td>{{ date('d M Y', strtotime($user->created_at)) }}</td>
+                                @endif
                                 <td>
                                     <a href="{{route('users.edit', $user)}}" class="btn btn-primary btn-xs">
                                         Edit

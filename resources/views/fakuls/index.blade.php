@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Daftar Fakultas | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Data Fakultas</h1>
+    <h1 class="m-0 text-dark">Daftar Nama Fakultas</h1>
 @stop
 
 @section('content')
@@ -11,21 +11,19 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-
                     <a class="btn btn-primary" href="{{ route('fakuls.create') }}"> Tambah</a>
                     <br><br>
-
                     <table class="table table-hover table-bordered table-stripped" id="example2">
                         <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Fakultas</th>
-                            @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
-                            @endif
-                            <th width="280px">Action</th>
-                        </tr>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Fakultas</th>
+                                @if(auth()->user()->role=='admin')
+                                <th>Dibuat</th>
+                                <th>Diperbaharui</th>
+                                @endif
+                                <th width="280px">Action</th>
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach($fakuls as $key => $fakul)
@@ -33,10 +31,10 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $fakul->fakul_name }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $fakul->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime ($fakul->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $fakul->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime ($fakul->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 <a href="{{ route('fakuls.edit', $fakul->idfakul) }}" class="btn btn-primary btn-xs">Edit</a>
@@ -48,7 +46,6 @@
                         @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -78,7 +75,6 @@
                 $("#delete-form").submit();
             }
         }
-
     </script>
 @endpush
 

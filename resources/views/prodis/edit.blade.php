@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Edit Data Program Studi | Website Dikerba')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Edit Data Program Studi</h1>
@@ -32,7 +32,7 @@
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>Nama Program Studi:</strong>
+                                    <strong>Nama Program Studi</strong>
                                     <input type="text" name="prodi_name" value="{{ $prodi->prodi_name }}" class="form-control" placeholder="Nama Program Studi">
                                 </div>
                             </div>

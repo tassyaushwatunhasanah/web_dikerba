@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Daftar TNA')
+@section('title', 'Daftar Tahun Data TNA | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Daftar Training Need Analysis</h1>
+    <h1 class="m-0 text-dark">Daftar Tahun Training Need Analysis</h1>
 @stop
 
 @section('content')
@@ -12,16 +12,20 @@
         <div class="card">
             <div class="card-body">
                 <a href="{{route('tnas.createUtama')}}" class="btn btn-success mb-2" style="float: left;">
-                    <i class="fa fa-plus"></i> Tambah Data TNA
+                    <i class="fa fa-plus"></i> Tambah Tahun Data TNA
                 </a>
                 <br>
                 <br>
-                <table class="table table-hover table-bordered table-stripped" id="tnaUtamaTable" style="width:100%">
+                <table class="table table-hover table-bordered table-stripped" id="tnaUtamaTable" >
                     <thead>
                         <tr>
-                            <th width="50px">No.</th>
-                            <th width="100px">Tahun</th>
-                            <th width="100px">Aksi</th>
+                            <th >No.</th>
+                            <th>Tahun</th>
+                            @if(auth()->user()->role=='admin')
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
+                            @endif
+                            <th >Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,6 +33,12 @@
                             <tr>
                                 <th scope="row"></th>
                                 <td>{{$tnaUtama->tahun}}</td>
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($tnaUtama->created_at)) }}</td>
+                                @endif
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($tnaUtama->updated_at)) }}</td>
+                                @endif
                                 <td>
                                     <a href="{{route('tnas.editUtama', $tnaUtama['id'])}}" class="btn btn-success btn-sm" style="margin: 3px 1px;">
                                         <i class="fa fa-pencil-square"></i>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LaporanpraktikController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\OrientasiController;
 use App\Http\Controllers\RuanganController;
@@ -17,6 +18,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\IhtController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\TnaController;
+use App\Http\Controllers\JplController;
 use App\Http\Controllers\PegawaiController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,9 +49,12 @@ Route::get('/home', [IhtController::class, 'indexDashboard'])->name('home')->mid
 
 Route::post('orientasis/downloadorientasipdf', [OrientasiController::class, 'downloadorientasipdf'])->name('downloadorientasipdf')->middleware('auth');
 Route::post('mahasiswas/downloadmahasiswapdf', [MahasiswaController::class, 'downloadmahasiswapdf'])->name('downloadmahasiswapdf')->middleware('auth');
+Route::get('mahasiswas/excelmahasiswa', [MahasiswaController::class, 'excelmahasiswa'])->name('excelmahasiswa')->middleware('auth');
 Route::get('mahasiswas/cetakmahasiswa', [MahasiswaController::class, 'cetakmahasiswa'])->name('cetakmahasiswa')->middleware('auth');
+Route::post('laporanpraktiks/cetaklaporanpraktik', [LaporanpraktikController::class, 'cetaklaporanpraktik'])->name('cetaklaporanpraktik')->middleware('auth');
 Route::get('orientasis/cetakorientasi', [OrientasiController::class, 'cetakorientasi'])->name('cetakorientasi')->middleware('auth');
 Route::resource('users', UserController::class)->middleware('auth');
+Route::resource('laporanpraktiks', LaporanpraktikController::class)->middleware('auth');
 Route::resource('mahasiswas', MahasiswaController::class)->middleware('auth');
 Route::resource('univs', UnivController::class)->middleware('auth');
 Route::resource('fakuls', FakulController::class)->middleware('auth');
@@ -95,9 +100,23 @@ Route::delete('/deleteNarasumber/{narasumberIht}', [IhtController::class, 'destr
 Route::resource('/kalender', KalenderController::class)->middleware('auth');
 
 //route jpl
+Route::get('/jpls/createJpl', [JplController::class, 'createUtama'])->name('jpls.createUtama')->middleware('auth');
+Route::post('/jpls/storeJpl', [JplController::class, 'storeUtama'])->name('jpls.storeUtama')->middleware('auth');
+Route::delete('/jpls/deleteJpl/{jplUtama}', [JplController::class, 'destroyUtama'])->name('jpls.destroyUtama')->middleware('auth');
+Route::get('/jpls/editJpl/{jplUtama}', [JplController::class, 'editUtama'])->name('jpls.editUtama')->middleware('auth');
+Route::patch('/jpls/updateJpl/{jplUtama}', [JplController::class, 'updateUtama'])->name('jpls.updateUtama')->middleware('auth');
+Route::get('jpls/{jplUtama}', [JplController::class, 'showDetail'])->name('jpls.showDetail')->middleware('auth');
+Route::get('/jpls/{jplUtama}/create', [JplController::class, 'create'])->name('jpls.createJpl')->middleware('auth');
+Route::get('/jpls/{jplUtama}/{jpl}', [JplController::class, 'showDetailJpl'])->name('jpls.showDetailJpl')->middleware('auth');
+Route::post('/jpls/{jplUtama}/store', [JplController::class, 'store'])->name('jpls.store')->middleware('auth');
+Route::delete('/jpls/{jplUtama}/destroy/{jpl}', [JplController::class, 'destroy'])->name('jpls.destroy')->middleware('auth');
+Route::get('/jpls/{jplUtama}/edit/{jpl}', [JplController::class, 'edit'])->name('jpls.edit')->middleware('auth');
+Route::patch('/jpls/update/{jpl}', [JplController::class, 'update'])->name('jpls.update')->middleware('auth');
+
+
+
 Route::resource('/jpls', JplController::class)->middleware('auth');
-// Route::get('/jpls/{jpl}', 'JplController@show')->name('jpls.show')->middleware('auth');
-Route::get('/jpls/test', [JplController::class, 'showDetail'])->name('jpls.showDetail')->middleware('auth');
+
 Route::post('/get_fields', [JplController::class, 'getAllFields'])->name('get.all.fields')->middleware('auth');
 
 //route tna utama
@@ -128,6 +147,8 @@ Route::get('/cetakDetail/{iht}', [IhtController::class, 'cetakDetail'])->name('c
 Route::get('/cetakPeserta/{iht}/{detail_id}', [IhtController::class, 'cetakPeserta'])->name('cetakPeserta')->middleware('auth');
 Route::get('/cetakTna/{tnaUtama}', [TnaController::class, 'cetakTna'])->name('cetakTna')->middleware('auth');
 Route::get('/cetakPegawai', [PegawaiController::class, 'cetakPegawai'])->name('cetakPegawai')->middleware('auth');
+Route::get('/cetakJpl/{jplUtama}', [JplController::class, 'cetakJpl'])->name('cetakJpl')->middleware('auth');
+Route::get('/cetakDetail/{jplUtama}/{jpl}', [JplController::class, 'cetakDetail'])->name('cetakDetail')->middleware('auth');
 
 
 Auth::routes();

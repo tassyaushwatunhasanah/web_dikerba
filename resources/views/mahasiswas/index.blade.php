@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Data Mahasiswa Praktik | Website Dikerba')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Data Mahasiswa Praktik</h1>
@@ -17,7 +17,7 @@
                     <a class="btn btn-success" href="{{ route('mahasiswas.create') }}"> Excel</a>
                     <br><br>
 
-                    <table class="table table-hover table-bordered table-stripped" id="example2">
+                    <table class="table table-hover table-bordered table-stripped table-responsive" id="example2">
                         <thead>
                         <tr>
                             <th>No</th>
@@ -29,8 +29,8 @@
                             <th>Keterangan</th>
                             <th>Kelulusan</th>
                             @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
                             @endif
                             <th width="280px">Action</th>
                         </tr>
@@ -47,10 +47,10 @@
                                 <td>{{ $mahasiswa->keterangan }}</td>
                                 <td>{{ $mahasiswa->Kelulusan }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $mahasiswa->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime($mahasiswa->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $mahasiswa->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime($mahasiswa->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 <a class="btn btn-info btn-xs" href="{{ route('mahasiswas.show',$mahasiswa->id) }}">Show</a>

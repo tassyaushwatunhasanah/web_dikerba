@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Edit User')
+@section('title', 'Edit Akun User | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Edit User</h1>
+    <h1 class="m-0 text-dark">Edit Akun User</h1>
 @stop
 
 @section('content')
@@ -43,7 +43,7 @@
                                             <Option value='admin' selected>admin</option>
                                             <Option value='user'>user</option>
                                     <?php else: ?>
-                                            <Option value='uaser' selected>user</option>
+                                            <Option value='user' selected>user</option>
                                             <Option value='admin'>admin</option>
                                     <?php endif?>
                         </select>

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Pegawai')
+@section('title', 'Daftar Data Pegawai | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Pegawai RS Ernaldi Bahar</h1>
+    <h1 class="m-0 text-dark">Daftar Pegawai RS Ernaldi Bahar</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
                     <a href="/cetakPegawai" class="btn btn-danger my-2">
                         <i class="far fa-fw fa-file"></i> PDF
                     </a>
-                    <table class="table table-hover table-bordered table-stripped" id="pegawaiTable">
+                    <table class="table table-hover table-bordered table-stripped table-responsive" id="pegawaiTable">
                     <thead>
                         <tr>
                             <th>No.</th>
@@ -30,6 +30,10 @@
                             <th>Status Pekerjaan</th>
                             <th>Status Jabatan</th>
                             <th>Bidang/Bagian Tempat Bekerja</th>
+                            @if(auth()->user()->role=='admin')
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
+                            @endif
                             <th style="width:100px">Aksi</th>
                         </tr>
                     </thead>
@@ -45,6 +49,12 @@
                                 <td>{{$pegawai->status_pekerjaan}}</td>
                                 <td>{{$pegawai->status_jabatan}}</td>
                                 <td>{{$pegawai->bidang}}</td>
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($pegawai->created_at)) }}</td>
+                                @endif
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($pegawai->updated_at)) }}</td>
+                                @endif
                                 <td>
                                     <a href="{{route('pegawais.edit', $pegawai)}}" class="btn btn-success btn-sm">
                                         <i class="fa fa-pencil-square"></i>

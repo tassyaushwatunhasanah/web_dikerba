@@ -60,7 +60,7 @@
 
     <button class="btn btn-primary btn-xs" type="submit">submit</button>
 </form>
-
+<br><br>
 <form action="{{ route('downloadorientasipdf') }}" method="Post">
     @csrf
 

@@ -61,61 +61,120 @@
         </table>
         <table border="1" cellpadding="5" cellspacing="1" class="table">
             <thead>
-                <tr>
-                    <th>Instansi</th>
-                    <th>Fakultas</th>
-                    <th>Jurusan</th>
-                    <th>Program Studi</th>
-                    <th>Tingkat pendidikan</th>
-                    <th>Tanggal Mulai</th>
-                    <th>Tanggal Selesai</th>
-                    <th>Jumlah</th>
-                    <th>Ruangan</th>
-                </tr>
+            <tr>
+                <th>Instansi</th>
+                <th>Fakultas</th>
+                <th>Jurusan</th>
+                <th>Program Studi</th>
+                <th>Tingkat pendidikan</th>
+                <th>Ruangan</th>
+                <th>Jumlah</th>
+                <th>Tanggal Mulai</th>
+                <th>Tanggal Selesai</th>
+            </tr>
             </thead>
             <tbody>
-                @foreach ($mhs as $key => $mh)
+            @foreach ($mhs as $key => $mahasiswa)
                 <tr>
                     <td>{{ $key }}</td>
+
                     <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->fakul->fakul_name }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->jurusan->jurusan_name }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->prodi->prodi_name }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->tingkatpendidikan->tkpendidikan_name }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->tgl_mulai }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->tgl_selesai }}</span><br/>
-                        @endforeach
-                    </td>
-                    <td>{{ $mh->count() }}</td>
-                    <td>
-                        @foreach ($mh as $m)
-                            <span>{{ $m->ruangan->ruangan_name }}</span><br/>
+                        @foreach($mahasiswa as $key => $mahas)
+                            <p>{{  $key }}</p>
                         @endforeach
                     </td>
 
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                <p>{{  $key }}</p>
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    <p>{{  $key }}</p>
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    @foreach($mah as $key => $ma)
+                                        <p>{{  $key }}</p>
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    @foreach($mah as $key => $ma)
+                                        @foreach($ma as $key => $m)
+                                            <p>{{  $key }}</p>
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    @foreach($mah as $key => $ma)
+                                        @foreach($ma as $m)
+                                            <p>{{  $m->count() }}</p>
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    @foreach($mah as $key => $ma)
+                                        @foreach($ma as $m)
+                                            @foreach($m as $tgl)
+                                                <p>{{ date('d M Y', strtotime($tgl->tgl_mulai)) }}</p>
+                                            @endforeach
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
+
+                    <td>
+                        @foreach($mahasiswa as $key => $mahas)
+                            @foreach($mahas as $key => $maha)
+                                @foreach($maha as $key => $mah)
+                                    @foreach($mah as $key => $ma)
+                                        @foreach($ma as $m)
+                                            @foreach($m as $tgl)
+                                                <p>{{ date('d M Y', strtotime($tgl->tgl_selesai)) }}</p>
+                                            @endforeach
+                                        @endforeach
+                                    @endforeach
+                                @endforeach
+                            @endforeach
+                        @endforeach
+                    </td>
                 </tr>
-                @endforeach
+            @endforeach
             </tbody>
         </table>
     </section>

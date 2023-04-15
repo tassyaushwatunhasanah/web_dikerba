@@ -67,7 +67,7 @@
 
 </div>
 
-<table>
+<table border="1" cellpadding="5" cellspacing="1" class="table">
     <thead>
     <tr>
         <th scope="col">No</th>

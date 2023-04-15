@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Tambah Data Fakultas | Website Dikerba')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Create Fakultas</h1>
@@ -19,7 +19,6 @@
                         @error('fakul_name') <span class="text-danger">{{$message}}</span> @enderror
                     </div>
                 </div>
-
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="{{route('fakuls.index')}}" class="btn btn-default">

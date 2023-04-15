@@ -50,28 +50,26 @@
 </head>
 
 <body>
-<div class="header">
-    <h1 class="title">Laporan Mahasiswa Praktik</h1>
+    <div class="header">
+        <h1 class="title">Laporan Mahasiswa Praktik</h1>
 
-</div>
-<form action="{{ route('cetakmahasiswa') }}" method="GET">
-    &nbsp; <span  class="date-label">From: </span><input class="date_range_filter date" type="date"  name="start_date"/>
-    &nbsp; <span  class="date-label">To: <input class="date_range_filter date" type="date" name="end_date" />
+    </div>
+    <form action="{{ route('cetakmahasiswa') }}" method="GET">
+        &nbsp; <span  class="date-label">From: </span><input class="date_range_filter date" type="date"  name="start_date"/>
+        &nbsp; <span  class="date-label">To: <input class="date_range_filter date" type="date" name="end_date" />
 
-    <button class="btn btn-primary btn-xs" type="submit">submit</button>
-</form>
+        <button class="btn btn-primary btn-xs" type="submit">submit</button>
+    </form>
+    <br><br>
+    <form action="{{ route('downloadmahasiswapdf') }}" method="post">
+        @csrf
 
-<form action="{{ route('downloadmahasiswapdf') }}" method="post">
-    @csrf
+        @foreach ($mahasiswas as $mahasiswa)
+            <input type="text" name="mahasiswas[]" value="{{ $mahasiswa->id }}" hidden>
+        @endforeach
 
-    @foreach ($mahasiswas as $mahasiswa)
-    <input type="text" name="mahasiswas[]" value="{{ $mahasiswa->id }}" hidden>
-    @endforeach
-
-    <button type="submit" formtarget="_blank">Cetak</button>
-</form>
-
-
+        <button type="submit" formtarget="_blank">Cetak</button>
+    </form>
         <div class="row">
             <table>
                 <thead>
@@ -93,7 +91,6 @@
                     <th scope="col">Status Kelulusan</th>
                 </tr>
                 </thead>
-
                 <tbody>
                     @foreach($mahasiswas as $key => $mahasiswa)
                     <tr>
@@ -113,7 +110,7 @@
                         <td>{{ $mahasiswa->keterangan }}</td>
                         <td>{{ $mahasiswa->Kelulusan }}</td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

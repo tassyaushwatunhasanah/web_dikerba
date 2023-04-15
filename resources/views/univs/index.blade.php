@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Daftar Instansi | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Data Instansi</h1>
+    <h1 class="m-0 text-dark">Daftar Nama Instansi</h1>
 @stop
 
 @section('content')
@@ -21,8 +21,8 @@
                             <th>No</th>
                             <th>Nama Instansi</th>
                             @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
                             @endif
                             <th width="280px">Action</th>
                         </tr>
@@ -33,10 +33,10 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $univ->univ_name }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $univ->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime($univ->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $univ->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime($univ->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 <a href="{{ route('univs.edit', $univ->iduniv) }}" class="btn btn-primary btn-xs">Edit</a>

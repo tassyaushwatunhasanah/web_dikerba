@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Ruangan')
+@section('title', 'Daftar Ruangan | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Ruangan</h1>
+    <h1 class="m-0 text-dark">Daftar Nama Ruangan</h1>
 @stop
 
 @section('content')
@@ -22,8 +22,8 @@
                             <th>Kode Ruangan</th>
                             <th>Nama Ruangan</th>
                             @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
                             @endif
                             <th width="280px">Action</th>
                         </tr>
@@ -35,10 +35,10 @@
                                 <td>{{ $ruangan->kode }}</td>
                                 <td>{{ $ruangan->ruangan_name }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $ruangan->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime($ruangan->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $ruangan->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime($ruangan->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 </a>

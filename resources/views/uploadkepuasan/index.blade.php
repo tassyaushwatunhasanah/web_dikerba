@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Uploadkepuasan')
+@section('title', 'Kuesioner Kepuasan Mahasiswa Terhadap Pelaksanaan Praktik | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Upload kepuasan</h1>
+    <h1 class="m-0 text-dark">Kuesioner Kepuasan Mahasiswa Terhadap Pelaksanaan Praktik</h1>
 @stop
 
 @section('content')

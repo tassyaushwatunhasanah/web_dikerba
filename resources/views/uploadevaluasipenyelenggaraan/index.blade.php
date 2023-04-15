@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Uploadevaluasipenyelenggaraan')
+@section('title', 'Kuesioner Evaluasi Penyelenggaraan Pendidikan Di RS. Ernaldi Bahar | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Upload Evaluasi Penyelenggaraan</h1>
+    <h1 class="m-0 text-dark">List Upload Evaluasi Penyelenggaraan Pendidikan Di RS. Ernaldi Bahar</h1>
 @stop
 
 @section('content')

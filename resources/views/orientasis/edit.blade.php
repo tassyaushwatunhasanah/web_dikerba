@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'WebDikerba')
+@section('title', 'Edit Data Orientasi Pegawai | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Orientasi Pegawai</h1>
+    <h1 class="m-0 text-dark">Edit Data Orientasi</h1>
 @stop
 
 @section('content')
@@ -11,9 +11,6 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                <div class="row">
-
-                </div>
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <strong>Whoops!</strong> There were some problems with your input.<br><br>

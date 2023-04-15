@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Detail TNA')
+@section('title', 'Daftar Detail TNA | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Detail TNA</h1>
+    <h1 class="m-0 text-dark">Daftar Detail TNA</h1>
 @stop
 
 @section('content')
@@ -12,12 +12,12 @@
         <div class="card">
             <div class="card-body">
                 <a href="{{route('tnas.createTna', $tnaUtama['id'])}}" class="btn btn-success my-2">
-                    <i class="fa fa-plus"></i> Tambah Data Detail TNA
+                    <i class="fa fa-plus"></i> Tambah Data TNA
                 </a>
                 <a href="/cetakTna/{{$tnaUtama['id']}}" class="btn btn-danger my-2">
                     <i class="far fa-fw fa-file"></i> PDF
                 </a>
-                <table class="table table-hover table-bordered table-stripped" id="tnaTable">
+                <table class="table table-hover table-bordered table-stripped table-responsive" id="tnaTable">
                     <thead>
                         <tr>
                             <th width="50px">No.</th>
@@ -35,6 +35,11 @@
                             <th width="200px">Masalah yang dihadapi untuk pengembangan capaian kompetensi (diisi berdasarkan poin sebelumnya)</th>
                             <th width="200px">Pelatihan/IHT/seminar/workshop/teknis yang telah diikuti dalam 2 tahun terakhir (online/offline)</th>
                             <th width="200px">Pelatihan/IHT/Prioritas untuk Pengembangan Kompetensi sesuai Tupoksi</th>
+                            <th>Pendidikan</th>
+                            @if(auth()->user()->role=='admin')
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
+                            @endif
                             <th width="100px">Aksi</th>
                         </tr>
                     </thead>
@@ -56,6 +61,12 @@
                                 <td>{{$tna->masalah}}</td>
                                 <td>{{$tna->pelatihan_2_thn}}</td>
                                 <td>{{$tna->pelatihan_tupoksi}}</td>
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($tna->created_at)) }}</td>
+                                @endif
+                                @if(auth()->user()->role=='admin')
+                                <td>{{ date('d M Y', strtotime ($tna->updated_at)) }}</td>
+                                @endif
                                 <td>
                                     <a href="/tnas/{{$tnaUtama['id']}}/edit/{{$tna['id']}}" class="btn btn-success btn-sm">
                                         <i class="fa fa-pencil-square"></i>

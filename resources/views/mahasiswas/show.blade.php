@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Detail Data Mahasiswa Praktik | Website Dikerba')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Detail Data Mahasiswa Praktik</h1>

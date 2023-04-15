@@ -12,39 +12,25 @@ use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade\PDF;
 class IhtController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $iht = Iht::all();
         return view('ihts.iht', ['iht'=>$iht]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function indexDashboard()
     {
         $iht = Iht::all();
         return view('home', ['iht'=>$iht]);
     }
 
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -62,21 +48,11 @@ class IhtController extends Controller
                 'status.required'=>"Status kegiatan harus diisi"
             ]
         );
-        //jadwal
-        // $filename = time().$request->file('jadwal')->getClientOriginalName();
-        // $path = $request->file('jadwal')->storeAs('uploads', $filename, 'public');
-        // $requestData["jadwal"] = '/storage/'.$path;
 
         iht::create($request->all());
         return redirect('/iht')->with('status', 'Data IHT berhasil ditambahkan!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function storeDetail(Request $request)
     {
         $tgl_mulai = iht::select('tgl_mulai')->where('id', $request->iht_id)->first();
@@ -153,7 +129,15 @@ class IhtController extends Controller
         ]);
         return redirect(route('iht.showPeserta',array($detailIht['iht_id'], $narasumberIht['detail_iht_id'])))->with('status', 'Data narasumber pelatihan berhasil ditambahkan!');
     }
-    public function show($id)
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+     public function show($id)
     {
         $iht= iht::find($id);
         $detailIht=Detail_Iht::all()->where(('iht_id'),'=',($iht['id']));
@@ -163,14 +147,7 @@ class IhtController extends Controller
         return view('ihts.ihtDetail')->with(compact('detailIht', 'iht', 'total_peserta', 'total_narasumber', 'total'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-     public function showPeserta($id, $detail_id)
+    public function showPeserta($id, $detail_id)
     {
         $iht=iht::find($id);
         $detailIht=Detail_Iht::find($detail_id);
@@ -178,6 +155,13 @@ class IhtController extends Controller
         $narasumberIht = Narasumber_Iht::all()->where(('detail_iht_id'),'=',($detailIht['id']));
         return view('ihts.ihtDetailPeserta')->with(compact('iht','detailIht', 'pesertaIht', 'narasumberIht'));
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function edit($id)
     {
         //
@@ -218,14 +202,7 @@ class IhtController extends Controller
         return redirect('/iht')->with('status', 'Data IHT berhasil diedit!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-     public function updateDetail(Request $request)
+    public function updateDetail(Request $request)
     {
         $tgl_mulai = iht::select('tgl_mulai')->where('id', $request->iht_id)->first();
         $tgl_selesai = iht::select('tgl_selesai')->where('id', $request->iht_id)->first();
@@ -301,6 +278,13 @@ class IhtController extends Controller
 
         return redirect(route('iht.showPeserta', array($detailIht['iht_id'], $narasumberIht['detail_iht_id'])))->with('status', 'Data narasumber berhasil diedit!');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $iht = iht::find($id);
@@ -314,6 +298,7 @@ class IhtController extends Controller
         $detailIht->delete();
         return redirect(route('iht.show',$detailIht['iht_id']))->with('status', 'Data kegiatan pelatihan berhasil dihapus!');
     }
+
     public function destroyPeserta($id)
     {
         $pesertaIht = Peserta_Iht::find($id);
@@ -321,6 +306,7 @@ class IhtController extends Controller
         $pesertaIht->delete();
         return redirect(route('iht.showPeserta',array($detailIht['iht_id'], $pesertaIht['detail_iht_id'])))->with('status', 'Data peserta pelatihan berhasil dihapus!');
     }
+
     public function destroyNarasumber($id)
     {
         $narasumberIht = Narasumber_Iht::find($id);
@@ -328,6 +314,7 @@ class IhtController extends Controller
         $narasumberIht->delete();
         return redirect(route('iht.showPeserta',array($detailIht['iht_id'], $narasumberIht['detail_iht_id'])))->with('status', 'Data narasumber pelatihan berhasil dihapus!');
     }
+
     public function filterPelatihan(Request $request){
         if (request()->startdate || request()->enddate) {
             $startdate = Carbon::parse(request()->startdate)->toDateTimeString();
@@ -339,6 +326,7 @@ class IhtController extends Controller
         view()->share('iht', $iht);
         return view('ihts.iht')->with(compact('iht'));
     }
+
     public function cetakPelatihan(Request $request){
         if (request()->startdate || request()->enddate) {
             $startdate = Carbon::parse(request()->startdate)->toDateTimeString();
@@ -358,6 +346,7 @@ class IhtController extends Controller
         $pdf->setPaper('A4');
         return $pdf->stream('Daftar_Pelatihan.pdf');
     }
+
     public function cetakDetail($id){
         $iht=iht::find($id);
         $detailIht=Detail_Iht::all()->where(('iht_id'),'=',($iht['id']));
@@ -367,6 +356,7 @@ class IhtController extends Controller
         $pdf->setPaper('A4');
         return $pdf->stream('Daftar_Kegiatan.pdf');
     }
+
     public function cetakPeserta($id, $detail_id){
         $iht=iht::find($id);
         $detailIht=Detail_Iht::find($detail_id);
@@ -380,4 +370,17 @@ class IhtController extends Controller
         $pdf->setPaper('A4');
         return $pdf->stream('Daftar_Peserta.pdf');
     }
+
+    // public function excelPelatihan(Request $request){
+    //     return (new IhtExport)->download('Daftar_Pelatihan.xlsx');
+    // }
+
+    // public function excelDetail($id){
+    //     return (new IhtDetailExport($id))->download('Daftar_Kegiatan.xlsx');
+    // }
+
+    // public function excelPeserta($id){
+    //     return (new IhtPesertaExport($id))->download('Daftar_Peserta.xlsx');
+    // }
+
 }

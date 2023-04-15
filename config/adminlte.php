@@ -297,11 +297,6 @@ return [
             'icon' => 'fa fa-user-circle',
         ],
         [
-            'type' => 'navbar-search',
-            'text' => 'search',
-            'topnav_right' => true,
-        ],
-        [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
@@ -320,6 +315,11 @@ return [
             'text' => 'Mahasiswa Praktik Klinik',
             'icon' => 'fas fa-fw fa-users',
             'submenu' => [
+                [
+                    'text' => 'Data Laporan Praktik',
+                    'url' => '/laporanpraktiks',
+                    'icon' => 'far fa-fw fa-file',
+                ],
                 [
                     'text' => 'Data Mahasiswa Praktik',
                     'url' => '/mahasiswas',
@@ -396,6 +396,11 @@ return [
             'text'        => 'Data Pegawai',
             'url'         => '/pegawais',
             'icon'        => 'far fa-fw fa-user',
+        ],
+        [
+            'text'        => 'JPL',
+            'url'         => '/jpls',
+            'icon'        => 'far fa-fw fa-file',
         ],
 
     ],

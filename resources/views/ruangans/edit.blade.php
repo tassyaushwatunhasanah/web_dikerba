@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'WebDikerba')
+@section('title', 'Edit Data Ruangan | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Ruangan</h1>
+    <h1 class="m-0 text-dark">Edit Data Ruangan</h1>
 @stop
 
 @section('content')
@@ -32,13 +32,13 @@
                         <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>Kode:</strong>
+                                    <strong>Kode</strong>
                                     <input type="text" name="kode" value="{{ $ruangan->kode }}" class="form-control" >
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
-                                    <strong>Ruangan:</strong>
+                                    <strong>Ruangan</strong>
                                     <input type="text" name="ruangan_name" value="{{ $ruangan->ruangan_name }}" class="form-control" placeholder="Ruangan">
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Exports\MahasiswaExport;
 use App\Models\Ruangan;
 use App\Models\Univ;
 use App\Models\Fakul;
@@ -60,25 +61,39 @@ class MahasiswaController extends Controller
             ->with('univ')
             ->whereIn('id', $request->mahasiswas)
             ->get();
-        // $mahasiswas = Mahasiswa::query()
-        //     ->with('univ', 'ruangan')
-        //     ->get();
 
-        $mhs = Mahasiswa::query()
+            $mhs = Mahasiswa::query()
             ->with('univ', 'ruangan')
             ->whereIn('id', $request->mahasiswas)
             ->get()
-            ->groupBy(function ($univ){
-                return $univ->univ->univ_name;
-
-            })
-            ->groupBy(function ($ruangan){
-                return $ruangan->ruangan->ruangan_name;
-            }); dd($mhs);
+            ->groupBy([
+                function ($query) {
+                    return $query->univ->univ_name;
+                },
+                function ($query) {
+                    return $query->fakul->fakul_name;
+                },
+                function ($query) {
+                    return $query->jurusan->jurusan_name;
+                },
+                function ($query) {
+                    return $query->prodi->prodi_name;
+                },
+                function ($query) {
+                    return $query->tingkatpendidikan->tkpendidikan_name;
+                },
+                function ($query) {
+                    return $query->ruangan->ruangan_name;
+                },
+            ]);
         $pdf = PDF::loadview('mahasiswas.downloadmahasiswapdf', compact('mahasiswas', 'mhs'));
-
+        $pdf->setPaper('A4','landscape');
         return $pdf->stream('laporan-mahasiswa.pdf');
     }
+    // public function excelmahasiswa(Request $request)
+    // {
+    //     return(new MahasiswaExport)->download('Data_Mahasiswa.xlsx');
+    // }
 
     /**
      * Show the form for creating a new resource.

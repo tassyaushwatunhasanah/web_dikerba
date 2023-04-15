@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Tambah Pegawai')
+@section('title', 'Tambah Data Pegawai | Website Dikerba')
 
 @section('content_header')
     <h1 class="m-0 text-dark">Tambah Data Pegawai</h1>

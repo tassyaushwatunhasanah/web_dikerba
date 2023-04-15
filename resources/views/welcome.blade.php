@@ -62,10 +62,10 @@
                 margin-bottom: 30px;
             }
             h2 {
-                text-align: left;  
+                text-align: left;
             }
             p {
-                text-align: left;  
+                text-align: left;
             }
         </style>
     </head>
@@ -87,12 +87,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Website Dikerba 
+                    Website Dikerba
                 </div>
 
-                <p> 
+                <p>
                     Unit Pendidikan dan Pelatihan (Diklat) adalah sebuah unit yang memiliki fungsi
-                    menyelenggarakan kegiatan-kegiatan pendidikan dan pelatihan baik yang sasarannya 
+                    menyelenggarakan kegiatan-kegiatan pendidikan dan pelatihan baik yang sasarannya
                     ke dalam maupun keluar rumah sakit. Unit Diklat memiliki tugas sebagai berikut :
                 </p>
                 <p>
@@ -100,15 +100,15 @@
                     dan pelatihan baik internal maupun eksternal rumah sakit.
                 </p>
                 <p>
-                    2. Memfasilitasi pelaksanaan kegiatan pendidikan dan 
+                    2. Memfasilitasi pelaksanaan kegiatan pendidikan dan
                     pelatihan bagi unit-unit / bagian / bidang instalasi yang membutuhkan.
                 </p>
                 <p>
-                    3. Membuat perencanaan berbagai kegiatan pendidikan 
+                    3. Membuat perencanaan berbagai kegiatan pendidikan
                     dan pelatihan berdasarkan kebutuhan internal dan eksternal rumah sakit.
                 </p>
                 <p>
-                    4. Memfasilitasi kebutuhan pendidikan seperti sarana dan 
+                    4. Memfasilitasi kebutuhan pendidikan seperti sarana dan
                     prasarana gedung dan peralatan yang dibutuhkan dalam proses pendidikan dan pelatihan.
                 </p>
             </div>

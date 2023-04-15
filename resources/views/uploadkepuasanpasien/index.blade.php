@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Uploadkepuasanpasien')
+@section('title', 'Kuesioner Survey Kepuasan Pasien Terhadap Pelayanan RS | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Upload kepuasan pasien</h1>
+    <h1 class="m-0 text-dark">Kuesioner Survey Kepuasan Pasien Terhadap Pelayanan RS Atas Dilaksanakannya Pendidikan Klinis di RS Ernaldi Bahar</h1>
 @stop
 
 @section('content')

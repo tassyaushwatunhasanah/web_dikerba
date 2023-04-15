@@ -9,8 +9,8 @@ class Narasumber_Iht extends Model
 {
     use HasFactory;
     protected $table='narasumber_ihts';
-    protected $fillable=['narasumber_id', 'nama_narasumber', 'instansi'];
-    public function iht(){
-        return $this->belongsTo(Iht::class, 'narasumber_id');
+    protected $fillable=['detail_iht_id', 'nama_narasumber', 'instansi'];
+    public function detail_iht(){
+        return $this->belongsTo(Detail_Iht::class, 'detail_iht_id');
     }
 }

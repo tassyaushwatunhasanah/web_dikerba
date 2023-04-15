@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Uploadevaluasidokterpendidik;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class UploadevaluasidokterpendidikController extends Controller
@@ -43,4 +44,12 @@ class UploadevaluasidokterpendidikController extends Controller
         //kembali ke halaman sebelumnya
         return back();
     }
+    // public function destroy(Uploadevaluasidokterpendidik $uploadevaluasidokterpendidik)
+    // {
+    //     $uploadevaluasidokterpendidik->delete();
+
+    //     return redirect()->route('uploadevaluasidokterpendidiks.index')
+    //                     ->with('success', 'Deleted successfully');
+
+    // }
 }

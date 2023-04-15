@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Tambah Data Tingkat Pendidikan | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Create Tingkat Pendidikan</h1>
+    <h1 class="m-0 text-dark">Tambah Tingkat Pendidikan</h1>
 @stop
 
 @section('content')

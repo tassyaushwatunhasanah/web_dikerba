@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Website Dikerba')
+@section('title', 'Daftar Jurusan | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">Data Jurusan</h1>
+    <h1 class="m-0 text-dark">Daftar Nama Jurusan</h1>
 @stop
 
 @section('content')
@@ -21,8 +21,8 @@
                             <th>No</th>
                             <th>Nama Jurusan</th>
                             @if(auth()->user()->role=='admin')
-                            <th>Created_at</th>
-                            <th>Updated_at</th>
+                            <th>Dibuat</th>
+                            <th>Diperbaharui</th>
                             @endif
                             <th width="280px">Action</th>
                         </tr>
@@ -33,10 +33,10 @@
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $jurusan->jurusan_name }}</td>
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $jurusan->created_at }}</td>
+                                <td>{{ date('d M Y', strtotime($jurusan->created_at)) }}</td>
                                 @endif
                                 @if(auth()->user()->role=='admin')
-                                <td>{{ $jurusan->updated_at }}</td>
+                                <td>{{ date('d M Y', strtotime($jurusan->updated_at)) }}</td>
                                 @endif
                                 <td>
                                 <a href="{{ route('jurusans.edit', $jurusan->idjurusan) }}" class="btn btn-primary btn-xs">Edit</a>

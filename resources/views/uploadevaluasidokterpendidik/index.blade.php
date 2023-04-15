@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'List Uploadevaluasidokterpendidik')
+@section('title', 'Kuesioner Evaluasi Dokter Pendidik | Website Dikerba')
 
 @section('content_header')
-    <h1 class="m-0 text-dark">List Upload Evaluasi Dokter Pendidik</h1>
+    <h1 class="m-0 text-dark">Kuesioner Evaluasi Dokter Pendidik Klinis</h1>
 @stop
 
 @section('content')
@@ -59,7 +59,11 @@
                             </td>
                             <td align="center"><a href="{{asset('file_uploadevaluasidokterpendidik')}}/{{$item->file}}" download>Download</a></td>
                             <td>{{$item->keterangan}}</td>
-
+                            {{-- <td>
+                                <a href="{{route('uploadevaluasidokterpendidiks.destroy', $item->id)}}" onclick="notificationBeforeDelete(event, this)" class="btn btn-danger btn-xs">
+                                    Delete
+                                </a>
+                                </td> --}}
                         </tr>
                         @endforeach
                         </tbody>
